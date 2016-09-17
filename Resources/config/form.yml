@@ -1,0 +1,8 @@
+parameters:
+    ckfinder.form.file_chooser.type.class: CKSource\Bundle\CKFinderBundle\Form\Type\CKFinderFileChooserType
+
+services:
+    ckfinder.form.file_chooser.type:
+        class: %ckfinder.form.file_chooser.type.class%
+        tags:
+            - { name: form.type, alias: ckfinder_file_chooser }

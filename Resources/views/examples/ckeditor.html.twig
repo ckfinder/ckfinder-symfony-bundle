@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKFinder 3</title>
+    <script src="//cdn.ckeditor.com/4.5.6/standard-all/ckeditor.js"></script>
+    {% include "CKSourceCKFinderBundle::setup.html.twig" %}
+</head>
+<body>
+<div id="editor1"></div>
+<script>
+    if ( typeof CKEDITOR !== 'undefined' ) {
+        var editor = CKEDITOR.replace( 'editor1' );
+        CKFinder.setupCKEditor( editor );
+    } else {
+        document.getElementById( 'editor1' ).innerHTML = '<div>This sample requires a working Internet connection to load CKEditor from CDN.</div>'
+    }
+</script>
+</body>
+</html>

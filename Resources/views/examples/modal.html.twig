@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKFinder 3</title>
+    {% include "CKSourceCKFinderBundle::setup.html.twig" %}
+</head>
+<body>
+<input type="text" id="ckf-file"/>
+<button id="ckf-popup">Open Modal</button>
+<script>
+    document.getElementById( 'ckf-popup' ).onclick = function() {
+        CKFinder.modal( {
+            chooseFiles: true,
+            width: 800,
+            height: 600,
+            onInit: function( finder ) {
+                finder.on( 'files:choose', function( evt ) {
+                    var file = evt.data.files.first();
+                    var output = document.getElementById( 'ckf-file' );
+                    output.value = file.getUrl();
+                } );
+
+                finder.on( 'file:choose:resizedImage', function( evt ) {
+                    var output = document.getElementById( 'ckf-file' );
+                    output.value = evt.data.resizedUrl;
+                } );
+            }
+        } );
+    }
+</script>
+</body>
+</html>

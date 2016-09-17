@@ -1,0 +1,31 @@
+{
+    "name": "ckfinder/ckfinder-symfony3-bundle",
+    "description": "CKFinder 3 bundle for Symfony 3",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "CKSource",
+            "homepage": "http://cksource.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/framework-bundle": "~3.0",
+        "symfony/form": "~3.0",
+        "pimple/pimple": "~3.0",
+        "monolog/monolog": "~1.4,>=1.4.1",
+        "league/flysystem": "1.0.27",
+        "league/flysystem-dropbox": "1.0.0",
+        "dropbox/dropbox-sdk": "~1.1.1",
+        "aws/aws-sdk-php": "~2.8.31",
+        "league/flysystem-aws-s3-v2": "1.0.3",
+        "league/flysystem-cached-adapter": "1.0.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "CKSource\\Bundle\\CKFinderBundle\\": "",
+            "CKSource\\CKFinder\\": "_connector"
+        }
+    }
+}

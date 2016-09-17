@@ -1,0 +1,11 @@
+services:
+    ckfinder.connector.auth:
+        class: %ckfinder.connector.auth.class%
+        calls:
+            - [setContainer, ['@service_container']]
+
+    ckfinder.connector:
+        class: %ckfinder.connector.class%
+        arguments: [%ckfinder.connector.config%]
+        calls:
+            - [offsetSet, ['authentication', '@ckfinder.connector.auth']]

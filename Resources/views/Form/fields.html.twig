@@ -1,0 +1,24 @@
+{% block ckfinder_file_chooser_widget %}
+    {{ block('form_widget_simple') }}
+
+    <button id="{{ button_id }}" {% for attrname, attrvalue in button_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ button_text }}</button>
+    <script>
+        document.getElementById( '{{ button_id }}' ).addEventListener( 'click', function( e ) {
+            e.preventDefault();
+            CKFinder.{{ mode }}( {
+                chooseFiles: true,
+                onInit: function( finder ) {
+                    finder.on( 'files:choose', function( evt ) {
+                        var file = evt.data.files.first();
+                        var output = document.getElementById( '{{ id }}' );
+                        output.value = file.getUrl();
+                    } );
+                    finder.on( 'file:choose:resizedImage', function( evt ) {
+                        var output = document.getElementById( '{{ id }}' );
+                        output.value = evt.data.resizedUrl;
+                    } );
+                }
+            } );
+        } );
+    </script>
+{% endblock %}
