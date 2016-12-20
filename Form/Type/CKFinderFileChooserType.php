@@ -70,14 +70,6 @@ class CKFinderFileChooserType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return $this->getName();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
         return 'ckfinder_file_chooser';
     }
 }

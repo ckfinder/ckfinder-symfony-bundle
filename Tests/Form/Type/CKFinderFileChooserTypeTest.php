@@ -25,7 +25,7 @@ class CKFinderFileChooserTypeTest extends TypeTestCase
         $fieldType = new CKFinderFileChooserType();
 
         return array(new PreloadedExtension(array(
-            $fieldType->getName() => $fieldType,
+            $fieldType,
         ), array()));
     }
 
