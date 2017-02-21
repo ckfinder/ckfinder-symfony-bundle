@@ -157,7 +157,7 @@ route in `CKSourceCKFinderBundle::Resources/config/routing.yml`:
 ```yaml
 ckfinder_examples:
     pattern:     /ckfinder/examples/{example}
-    defaults: { _controller: CKSourceCKFinderBundle:CKFinder:examples, example = null }
+    defaults: { _controller: CKSourceCKFinderBundle:CKFinder:examples, example: null }
 ```
 
 After that you can navigate to the `/ckfinder/examples` path and have a look at the list of available examples. To find out about the code behind them, check the `CKFinderController` class (`CKSourceCKFinderBundle::Controller/CKFinderController.php`).
