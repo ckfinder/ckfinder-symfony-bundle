@@ -3,6 +3,6 @@ parameters:
 
 services:
     ckfinder.form.file_chooser.type:
-        class: %ckfinder.form.file_chooser.type.class%
+        class: '%ckfinder.form.file_chooser.type.class%'
         tags:
-            - { name: form.type, alias: ckfinder_file_chooser }
+            - { name: form.type }
