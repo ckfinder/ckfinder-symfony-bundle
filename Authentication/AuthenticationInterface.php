@@ -12,12 +12,14 @@
 namespace CKSource\Bundle\CKFinderBundle\Authentication;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use CKSource\CKFinder\Authentication\AuthenticationInterface as BaseAuthenticationInterface;
 
 /**
  * Interface for the CKFinder authentication service.
  */
-interface AuthenticationInterface extends BaseAuthenticationInterface, ContainerAwareInterface
+interface AuthenticationInterface extends ContainerAwareInterface
 {
-
+    /**
+     * @return bool `true` if the current user was successfully authenticated within CKFinder.
+     */
+    public function authenticate();
 }
