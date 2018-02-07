@@ -12,7 +12,6 @@
 namespace CKSource\Bundle\CKFinderBundle\Test\DependencyInjection\CKSourceCKFinderExtensionTest;
 
 use CKSource\Bundle\CKFinderBundle\DependencyInjection\CKSourceCKFinderExtension;
-use CKSource\CKFinder\Authentication\AuthenticationInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
