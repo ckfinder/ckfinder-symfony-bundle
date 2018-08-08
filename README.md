@@ -143,7 +143,7 @@ ckfinder:
 
 **Note**: All options that are not defined will be taken from the default configuration file.
 
-To find out more about possible connector configuration options please refer to [CKFinder 3 – PHP Connector Documentation](http://docs.cksource.com/ckfinder3-php/configuration.html).
+To find out more about possible connector configuration options please refer to [CKFinder 3 – PHP Connector Documentation](https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html).
 
 The CKFinder bundle provides two extra options:
 - `authenticationClass` &ndash; the name of the CKFinder authentication service class (defaults to `CKSource\Bundle\CKFinderBundle\Authentication\Authentication`)
