@@ -11,3 +11,8 @@ services:
         arguments: ['%ckfinder.connector.config%']
         calls:
             - [offsetSet, ['authentication', '@ckfinder.connector.auth']]
+
+    ckfinder.command.download:
+        class: CKSource\Bundle\CKFinderBundle\Command\CKFinderDownloadCommand
+        tags:
+            - { name: console.command }
