@@ -33,6 +33,12 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
 
         $loader = new Loader\PhpFileLoader($container, $fileLocator);
         $loader->load('ckfinder_config.php');
+
+        if ($container->hasAlias('twig')) {
+            $container->prependExtensionConfig('twig', array(
+                'form_themes' => array('CKSourceCKFinderBundle:Form:fields.html.twig'),
+            ));
+        }
     }
 
     /**
@@ -52,28 +58,6 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
         $container->setParameter('ckfinder.connector.class', $config['connector']['connectorClass']);
         $container->setParameter('ckfinder.connector.auth.class', $config['connector']['authenticationClass']);
         $container->setParameter('ckfinder.connector.config', $config['connector']);
-
-        $this->registerFormThemes($container);
-    }
-
-    /**
-     * Registers form resources for CKFinder form field types.
-     *
-     * @param ContainerBuilder $container
-     */
-    protected function registerFormThemes(ContainerBuilder $container)
-    {
-        $templatingEngines = $container->getParameter('templating.engines');
-
-        if (in_array('twig', $templatingEngines)) {
-            $container->setParameter(
-                'twig.form.resources',
-                array_merge(
-                    array('CKSourceCKFinderBundle:Form:fields.html.twig'),
-                    $container->getParameter('twig.form.resources')
-                )
-            );
-        }
     }
 
     /**
