@@ -1,7 +1,7 @@
-CKFinder 3 Bundle for Symfony 3
+CKFinder 3 Bundle for Symfony
 ===============================
 
-This repository contains the CKFinder 3 bundle for Symfony 3.
+This repository contains the CKFinder 3 bundle for Symfony.
 If you're looking for bundle for Symfony 2, please refer [here](https://github.com/ckfinder/ckfinder-symfony2-bundle).
 
 ## Installation

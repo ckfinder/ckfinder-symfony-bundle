@@ -11,7 +11,7 @@
 
 namespace CKSource\Bundle\CKFinderBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,7 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
  *
  * Command that downloads the CKFinder package and puts assets to the Resources/public directory of the bundle.
  */
-class CKFinderDownloadCommand extends ContainerAwareCommand
+class CKFinderDownloadCommand extends Command
 {
     const ZIP_PACKAGE_URL = 'http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.4.4/ckfinder_php_3.4.4.zip';
 

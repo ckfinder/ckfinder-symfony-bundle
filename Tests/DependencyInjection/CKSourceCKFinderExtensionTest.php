@@ -84,7 +84,7 @@ class CKSourceCKFinderExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->container->compile();
         $this->assertInstanceOf('CKSource\CKFinder\CKFinder', $this->container->get('ckfinder.connector'));
-        $this->assertInstanceOf('CKSource\CKFinder\Authentication\AuthenticationInterface', $this->container->get('ckfinder.connector.auth'));
+        $this->assertInstanceOf('CKSource\Bundle\CKFinderBundle\Authentication\AuthenticationInterface', $this->container->get('ckfinder.connector.auth'));
     }
 
     /**
@@ -161,7 +161,7 @@ class CKSourceCKFinderExtensionTest extends \PHPUnit_Framework_TestCase
 
         /* @var $auth \CKSource\Bundle\CKFinderBundle\Tests\Fixtures\Authentication\CustomAuthentication */
         $auth = $this->container->get('ckfinder.connector.auth');
-        $this->assertInstanceOf('CKSource\CKFinder\Authentication\AuthenticationInterface', $auth);
+        $this->assertInstanceOf('CKSource\Bundle\CKFinderBundle\Authentication\AuthenticationInterface', $auth);
         $this->assertInstanceOf($authClass, $auth);
 
         /* @var $connector \CKSource\CKFinder\CKFinder */
