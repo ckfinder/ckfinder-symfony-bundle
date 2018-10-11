@@ -1,6 +1,6 @@
 {
-    "name": "ckfinder/ckfinder-symfony3-bundle",
-    "description": "CKFinder 3 bundle for Symfony",
+    "name": "ckfinder/ckfinder-symfony-bundle",
+    "description": "CKFinder bundle for Symfony",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
