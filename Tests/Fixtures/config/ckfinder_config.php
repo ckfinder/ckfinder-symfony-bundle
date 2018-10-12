@@ -1,6 +1,7 @@
 <?php
 
 $config = array();
+$config['connectorFactoryClass'] = 'CKSource\Bundle\CKFinderBundle\Factory\ConnectorFactory';
 $config['connectorClass'] = 'CKSource\CKFinder\CKFinder';
 $config['authenticationClass'] = 'CKSource\Bundle\CKFinderBundle\Authentication\Authentication';
 $config['licenseName'] = '';
@@ -39,7 +40,7 @@ $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     'baseUrl'      => '/userfiles/',
-    'root'         => '/app/../web/userfiles',
+    'root'         => '/app/../public/userfiles',
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8'
