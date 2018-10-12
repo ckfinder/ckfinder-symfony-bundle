@@ -171,12 +171,14 @@ ckfinder:
 
 ## Configuration Options
 
-The default CKFinder connector configuration is taken from the `CKSourceCKFinderBundle::Resources/config/ckfinder_config.php` file.
+The default CKFinder connector configuration is taken from the `@CKSourceCKFinder/Resources/config/ckfinder_config.php` file.
 Thanks to the Symfony configuration merging mechanism there are multiple ways you can overwrite it. The default configuration
 is provided in form of a regular PHP file, but you can use the format you prefer (YAML, XML) as long as the structure is valid.
 
-The simplest way to overwrite the default configuration is copying the `ckfinder_config.php` file to your application `config`
+The simplest way to overwrite the default configuration is copying the `ckfinder_config.php` file to your application config
 directory, and then importing it in the main configuration file:
+
+**Symfony 3**
 
 ```yaml
 # app/config/config.yml
@@ -186,12 +188,43 @@ imports:
     - { resource: ckfinder_config.php }
 ```
 
-From now all connector configuration options will be taken from `app/config/ckfinder_config.php`.
+**Symfony 4**
 
-Another way to configure CKFinder is to include required options under the `ckfinder` node, directly in your `app/config/config.yml`.
+```yaml
+# config/packages/ckfinder.yml
+
+imports:
+    - { resource: ckfinder_config.php }
+    
+...
+```
+
+From now all connector configuration options will be taken from copied `ckfinder_config.php`.
+
+Another way to configure CKFinder is to include required options under the `ckfinder` node, directly in your config file.
+
+**Symfony 3**
 
 ```yaml
 # app/config/config.yml
+
+ckfinder:
+    connector:
+        licenseName: LICENSE-NAME
+        licenseKey: LICENSE-KEY
+        authenticationClass: AppBundle\CustomCKFinderAuth\CustomCKFinderAuth
+
+        resourceTypes:
+            MyResource:
+                name: MyResource
+                backend: default
+                directory: myResource
+```
+
+**Symfony 4**
+
+```yaml
+# config/packages/ckfinder.yml
 
 ckfinder:
     connector:
@@ -217,7 +250,7 @@ The CKFinder bundle provides two extra options:
 ## Usage
 
 The bundle code contains a few usage examples that you may find useful. To enable them uncomment the `ckfinder_examples`
-route in `CKSourceCKFinderBundle::Resources/config/routing.yml`:
+route in `@CKSourceCKFinder/Resources/config/routing.yml`:
 
 ```yaml
 ckfinder_examples:
@@ -232,7 +265,7 @@ After that you can navigate to the `/ckfinder/examples` path and have a look at 
 The preferred way to include `ckfinder.js` in a template is including the CKFinder setup template, like presented below:
 
 ```twig
-{% include "CKSourceCKFinderBundle::setup.html.twig" %}
+{% include "@CKSourceCKFinder/setup.html.twig" %}
 ```
 
 The included template renders the required `script` tags and configures a valid connector path.

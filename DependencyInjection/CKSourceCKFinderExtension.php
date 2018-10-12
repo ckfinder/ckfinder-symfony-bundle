@@ -34,10 +34,10 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
         $loader = new Loader\PhpFileLoader($container, $fileLocator);
         $loader->load('ckfinder_config.php');
 
-        if ($container->hasAlias('twig')) {
-            $container->prependExtensionConfig('twig', array(
-                'form_themes' => array('CKSourceCKFinderBundle:Form:fields.html.twig'),
-            ));
+        if ($container->hasExtension('twig')) {
+            $container->prependExtensionConfig('twig', [
+                'form_themes' => ['@CKSourceCKFinder/Form/fields.html.twig'],
+            ]);
         }
     }
 
