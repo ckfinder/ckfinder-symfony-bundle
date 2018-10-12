@@ -53,9 +53,10 @@ class ConnectorFactory
         if (Kernel::MAJOR_VERSION >= 4) {
             $this->setupForV4PlusKernel($connector);
         }
+        
+        $this->connectorInstance = $connector;
 
         return $connector;
-
     }
 
     /**
