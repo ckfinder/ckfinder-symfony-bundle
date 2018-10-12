@@ -52,15 +52,15 @@ class CKFinderController extends Controller
     {
         switch ($example) {
             case 'fullpage':
-                return $this->render('CKSourceCKFinderBundle:examples:fullpage.html.twig');
+                return $this->render('@CKSourceCKFinder/examples/fullpage.html.twig');
             case 'widget':
-                return $this->render('CKSourceCKFinderBundle:examples:widget.html.twig');
+                return $this->render('@CKSourceCKFinder/examples/widget.html.twig');
             case 'popup':
-                return $this->render('CKSourceCKFinderBundle:examples:popup.html.twig');
+                return $this->render('@CKSourceCKFinder/examples/popup.html.twig');
             case 'modal':
-                return $this->render('CKSourceCKFinderBundle:examples:modal.html.twig');
+                return $this->render('@CKSourceCKFinder/examples/modal.html.twig');
             case 'ckeditor':
-                return $this->render('CKSourceCKFinderBundle:examples:ckeditor.html.twig');
+                return $this->render('@CKSourceCKFinder/examples/ckeditor.html.twig');
             case 'filechooser':
                 $form = $this->createFormBuilder()
                     ->add('foo', TextType::class)
@@ -79,12 +79,12 @@ class CKFinderController extends Controller
                     ))
                     ->getForm();
 
-                return $this->render('CKSourceCKFinderBundle:examples:filechooser.html.twig', array(
+                return $this->render('@CKSourceCKFinder/examples/filechooser.html.twig', array(
                     'form' => $form->createView()
                 ));
         }
 
-        return $this->render('CKSourceCKFinderBundle:examples:index.html.twig');
+        return $this->render('@CKSourceCKFinder/examples/index.html.twig');
     }
 
 }

@@ -77,7 +77,9 @@ $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     'baseUrl'      => '/userfiles/',
-    'root'         => '%kernel.root_dir%/../web/userfiles',
+    'root'         => \Symfony\Component\HttpKernel\Kernel::MAJOR_VERSION >= 4
+        ? '%kernel.root_dir%/../public/userfiles'
+        : '%kernel.root_dir%/../web/userfiles',
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8'

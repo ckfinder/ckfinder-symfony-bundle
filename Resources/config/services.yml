@@ -5,12 +5,15 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
+    ckfinder.connector.factory:
+        class: '%ckfinder.connector.factory.class%'
+        public: true
+        arguments: ['%ckfinder.connector.config%', '@ckfinder.connector.auth']
+
     ckfinder.connector:
         class: '%ckfinder.connector.class%'
+        factory: ['@ckfinder.connector.factory', 'getConnector']
         public: true
-        arguments: ['%ckfinder.connector.config%']
-        calls:
-            - [offsetSet, ['authentication', '@ckfinder.connector.auth']]
 
     ckfinder.command.download:
         class: CKSource\Bundle\CKFinderBundle\Command\CKFinderDownloadCommand

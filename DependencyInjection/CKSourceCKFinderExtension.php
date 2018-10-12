@@ -55,6 +55,7 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('ckfinder.connector.factory.class', $config['connector']['connectorFactoryClass']);
         $container->setParameter('ckfinder.connector.class', $config['connector']['connectorClass']);
         $container->setParameter('ckfinder.connector.auth.class', $config['connector']['authenticationClass']);
         $container->setParameter('ckfinder.connector.config', $config['connector']);
