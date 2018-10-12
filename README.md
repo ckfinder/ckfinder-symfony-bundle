@@ -1,7 +1,7 @@
 CKFinder 3 Bundle for Symfony
 ===============================
 
-This repository contains the CKFinder 3 bundle for Symfony.
+This repository contains the CKFinder 3 bundle for Symfony 3+.
 If you're looking for bundle for Symfony 2, please refer [here](https://github.com/ckfinder/ckfinder-symfony2-bundle).
 
 ## Installation
@@ -9,10 +9,13 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 1. Add Composer dependency and install the bundle.
 
 	```bash
-	composer require ckfinder/ckfinder-symfony3-bundle
+	composer require ckfinder/ckfinder-symfony-bundle
 	```
 
 2. Enable the bundle in `AppKernel.php`.
+
+    **Note:** This step is required only for Symfony 3. If use Symfony 4
+    the bundle will be registered automatically.
 
 	``` php
 	// app/AppKernel.php
@@ -36,13 +39,17 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 	```
 	
 	It will download the code and place it in the `Resource/public` directory of the bundle. After that you may also want to install
-	assets, so the `web` directory will be updated with CKFinder code.
+	assets, so the public directory will be updated with CKFinder code.
 	
 	```bash
-	php bin/console assets:install web
+	php bin/console assets:install
 	```
 
-4. Enable bundle routing in `app/config/routing.yml`.
+4. Enable bundle routing.
+
+    **Symfony 3**
+    
+    Enable bundle routes in `app/config/routing.yml`:
 
 	```yaml
 	# app/config/routing.yml
@@ -51,12 +58,34 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 	    resource: "@CKSourceCKFinderBundle/Resources/config/routing.yml"
 	    prefix:   /
 	```
+	
+	**Symfony 4**
+	
+	Create `config/routes/ckfinder.yml` with following contents:
+	
+    ```yaml
+    # config/routes/ckfinder.yml
+    
+    ckfinder_connector:
+        resource: "@CKSourceCKFinderBundle/Resources/config/routing.yml"
+        prefix:   /
+    ```
+	
 
-5. Create a directory for CKFinder files and allow for write access to it. By default CKFinder expects it to be placed in `web/userfiles` (this can be altered in configuration).
+5. Create a directory for CKFinder files and allow for write access to it. By default CKFinder expects it to be placed in `<public folder>/userfiles` (this can be altered in configuration).
 
+    **Symfony 3**
+    
 	```bash
 	mkdir -m 777 web/userfiles
 	```
+	
+	**Symfony 4**
+	
+	```bash
+    mkdir -m 777 public/userfiles
+    ```
+	
 
 **NOTE:** Since usually setting permissions to 0777 is insecure, it is advisable to change the group ownership of the directory to the same user as Apache and add group write permissions instead. Please contact your system administrator in case of any doubts.
 
@@ -75,10 +104,30 @@ and point the CKFinder connector to use it.
 
 A basic implementation that returns `true` from the `authenticate` method (which is obviously **not secure**) can look like below:
 
+**Symfony 3**
+
 ```php
 // src/AppBundle/CustomCKFinderAuth/CustomCKFinderAuth.php
 
 namespace AppBundle\CustomCKFinderAuth;
+
+use CKSource\Bundle\CKFinderBundle\Authentication\Authentication as AuthenticationBase;
+
+class CustomCKFinderAuth extends AuthenticationBase
+{
+    public function authenticate()
+    {
+        return true;
+    }
+}
+```
+
+**Symfony 4**
+
+```php
+// src/CustomCKFinderAuth/CustomCKFinderAuth.php
+
+namespace App\CustomCKFinderAuth;
 
 use CKSource\Bundle\CKFinderBundle\Authentication\Authentication as AuthenticationBase;
 
@@ -96,12 +145,28 @@ container from the authentication class scope.
 
 When your custom authentication is ready, you need to tell the CKFinder connector to start using it. To do that add the following option to your configuration:
 
+**Symfony 3**
+
+In `app/config/config.yml` file add following configuration:
+
 ```yaml
 # app/config/config.yml
 
 ckfinder:
     connector:
         authenticationClass: AppBundle\CustomCKFinderAuth\CustomCKFinderAuth
+```
+
+**Symfony 4**
+
+Create `config/packages/ckfinder.yml` file:
+
+```yaml
+# config/packages/ckfinder.yml
+
+ckfinder:
+    connector:
+        authenticationClass: App\CustomCKFinderAuth\CustomCKFinderAuth
 ```
 
 ## Configuration Options
