@@ -25,7 +25,7 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class CKFinderDownloadCommand extends Command
 {
-    const ZIP_PACKAGE_URL = 'http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.4.4/ckfinder_php_3.4.4.zip';
+    const ZIP_PACKAGE_URL = 'http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.4.5/ckfinder_php_3.4.5.zip';
 
     /**
      * {@inheritdoc}
