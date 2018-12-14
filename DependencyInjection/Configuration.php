@@ -27,9 +27,14 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('ckfinder');
-        $treeBuilder
-            ->getRootNode()
-            ->append($this->addConnectorNode());
+
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            $rootNode = $treeBuilder->root('ckfinder');
+        }
+
+        $rootNode->append($this->addConnectorNode());
 
         return $treeBuilder;
     }
@@ -42,7 +47,12 @@ class Configuration implements ConfigurationInterface
     public function addConnectorNode()
     {
         $treeBuilder = new TreeBuilder('connector');
-        $connectorNode = $treeBuilder->getRootNode();
+
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $connectorNode = $treeBuilder->getRootNode();
+        } else {
+            $connectorNode = $treeBuilder->root('connector');
+        }
 
         $connectorNode
             ->children()
