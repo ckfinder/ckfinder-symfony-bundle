@@ -33,10 +33,15 @@ class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
      */
     public function testMerge()
     {
-        $builder = new TreeBuilder();
+        if (method_exists(TreeBuilder::class, 'getRootNode')) {
+            $builder = new TreeBuilder('root');
+            $rootNode = $builder->getRootNode();
+        } else {
+            $builder = new TreeBuilder();
+            $rootNode = $builder->root('root');
+        }
 
-        $tree = $builder
-            ->root('root')
+        $tree = $rootNode
                 ->children()
                     ->setNodeClass('variableArray', 'CKSource\Bundle\CKFinderBundle\Config\Definition\Builder\VariableArrayNodeDefinition')
                     ->node('foo', 'scalar')->end()
@@ -81,10 +86,15 @@ class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
      */
     public function testMergeWhenUsedAsAPrototype()
     {
-        $builder = new TreeBuilder();
+        if (method_exists(TreeBuilder::class, 'getRootNode')) {
+            $builder = new TreeBuilder('root');
+            $rootNode = $builder->getRootNode();
+        } else {
+            $builder = new TreeBuilder();
+            $rootNode = $builder->root('root');
+        }
 
-        $tree = $builder
-            ->root('root')
+        $tree = $rootNode
                 ->children()
                     ->setNodeClass('variableArray', 'CKSource\Bundle\CKFinderBundle\Config\Definition\Builder\VariableArrayNodeDefinition')
                     ->node('foo', 'scalar')->end()

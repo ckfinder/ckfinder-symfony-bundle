@@ -11,17 +11,16 @@
 
 namespace CKSource\Bundle\CKFinderBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use CKSource\Bundle\CKFinderBundle\Form\Type\CKFinderFileChooserType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for handling requests to CKFinder connector.
  */
-class CKFinderController extends Controller
+class CKFinderController extends AbstractController
 {
     /**
      * Action that handles all CKFinder requests.
