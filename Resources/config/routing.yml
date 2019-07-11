@@ -1,7 +1,7 @@
 ckfinder_connector:
     path:     /ckfinder/connector
-    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller::requestAction }
+    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::requestAction }
 
 #ckfinder_examples:
 #    path:     /ckfinder/examples/{example}
-#    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller::examplesAction, example: null }
+#    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::examplesAction, example: null }
