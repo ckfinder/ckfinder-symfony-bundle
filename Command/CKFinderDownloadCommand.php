@@ -129,6 +129,7 @@ class CKFinderDownloadCommand extends Command
         }
 
         $zip->extractTo($targetPublicPath, $zipEntries);
+        $zip->close();
 
         $fs = new Filesystem();
 
