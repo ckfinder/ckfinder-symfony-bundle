@@ -65,7 +65,7 @@ class CKFinderDownloadCommand extends Command
             $question = new ConfirmationQuestion($questionText, false);
 
             if (!$questionHelper->ask($input, $output, $question)) {
-                return 1;
+                return 0;
             }
         }
 
