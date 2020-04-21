@@ -46,7 +46,7 @@ class CKFinderDownloadCommand extends Command
         if (!is_writable($targetPublicPath)) {
             $output->writeln('<error>The CKSourceCKFinderBundle::Resources/public directory is not writable (used path: ' . $targetPublicPath . ').</error>');
 
-            return;
+            return 1;
         }
 
         $targetConnectorPath = realpath(__DIR__ . '/../_connector');
@@ -54,7 +54,7 @@ class CKFinderDownloadCommand extends Command
         if (!is_writable($targetConnectorPath)) {
             $output->writeln('<error>The CKSourceCKFinderBundle::_connector directory is not writable (used path: ' . $targetConnectorPath . ').</error>');
 
-            return;
+            return 1;
         }
 
         if (file_exists($targetPublicPath.'/ckfinder/ckfinder.js')) {
@@ -65,7 +65,7 @@ class CKFinderDownloadCommand extends Command
             $question = new ConfirmationQuestion($questionText, false);
 
             if (!$questionHelper->ask($input, $output, $question)) {
-                return;
+                return 0;
             }
         }
 
@@ -96,7 +96,7 @@ class CKFinderDownloadCommand extends Command
             $output->writeln(
                 '<error>Could not download the distribution package of CKFinder.</error>');
 
-            return;
+            return 1;
         }
 
         if ($progressBar) {
@@ -150,5 +150,6 @@ class CKFinderDownloadCommand extends Command
         ));
 
         $output->writeln('<info>Done. Happy coding!</info>');
+        return 0;
     }
 }
