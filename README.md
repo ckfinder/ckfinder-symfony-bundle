@@ -14,7 +14,7 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 
 2. Enable the bundle in `AppKernel.php`.
 
-    **Note:** This step is required only for Symfony 3. If you use Symfony 4
+    **Note:** This step is required only for Symfony 3. If you use Symfony 4+
     the bundle will be registered automatically.
 
 	``` php
@@ -59,7 +59,7 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 	    prefix:   /
 	```
 	
-	**Symfony 4**
+	**Symfony 4+**
 	
 	Create `config/routes/ckfinder.yml` with following contents:
 	
@@ -80,7 +80,7 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 	mkdir -m 777 web/userfiles
 	```
 	
-	**Symfony 4**
+	**Symfony 4+**
 	
 	```bash
     mkdir -m 777 public/userfiles

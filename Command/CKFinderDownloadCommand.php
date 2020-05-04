@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class CKFinderDownloadCommand
@@ -25,7 +26,8 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class CKFinderDownloadCommand extends Command
 {
-    const ZIP_PACKAGE_URL = 'http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.5.1/ckfinder_php_3.5.1.zip';
+    const LATEST_VERSION = '3.5.1.1';
+    const FALLBACK_VERSION = '3.5.1';
 
     /**
      * {@inheritdoc}
@@ -34,6 +36,18 @@ class CKFinderDownloadCommand extends Command
     {
         $this->setName('ckfinder:download')
              ->setDescription('Downloads the CKFinder distribution package and extracts it to CKSourceCKFinderBundle.');
+    }
+
+    /**
+     * Creates URL to CKFinder distribution package.
+     *
+     * @return string
+     */
+    protected function buildPackageUrl()
+    {
+        $packageVersion = Kernel::MAJOR_VERSION >= 5 ? self::LATEST_VERSION : self::FALLBACK_VERSION;
+
+        return "http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/$packageVersion/ckfinder_php_$packageVersion.zip";
     }
 
     /**
@@ -90,7 +104,7 @@ class CKFinderDownloadCommand extends Command
 
         $output->writeln('<info>Downlading the CKFinder 3 distribution package.</info>');
 
-        $zipContents = @file_get_contents(self::ZIP_PACKAGE_URL, false, $ctx);
+        $zipContents = @file_get_contents($this->buildPackageUrl(), false, $ctx);
 
         if ($zipContents === false) {
             $output->writeln(

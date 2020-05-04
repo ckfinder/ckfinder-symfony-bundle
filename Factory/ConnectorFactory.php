@@ -50,10 +50,10 @@ class ConnectorFactory
 
         $connector['authentication'] = $this->authenticationService;
 
-        if (Kernel::MAJOR_VERSION >= 4) {
-            $this->setupForV4PlusKernel($connector);
+        if (Kernel::MAJOR_VERSION === 4) {
+            $this->setupForV4Kernel($connector);
         }
-        
+
         $this->connectorInstance = $connector;
 
         return $connector;
@@ -64,7 +64,7 @@ class ConnectorFactory
      *
      * @param \CKSource\CKFinder\CKFinder $ckfinder
      */
-    protected function setupForV4PlusKernel($ckfinder)
+    protected function setupForV4Kernel($ckfinder)
     {
         $ckfinder['resolver'] = function () use ($ckfinder) {
             $commandResolver = new CommandResolver($ckfinder);
