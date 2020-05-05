@@ -81,7 +81,7 @@ if (\Symfony\Component\HttpKernel\Kernel::MAJOR_VERSION >= 4) {
 }
 if (\Symfony\Component\HttpKernel\Kernel::MAJOR_VERSION >= 5) {
     //For Symfony 5
-    $root = '%kernel.project_dir%/../public/userfiles';
+    $root = '%kernel.project_dir%/public/userfiles';
 }
 
 $config['backends']['default'] = array(
