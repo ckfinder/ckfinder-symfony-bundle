@@ -75,8 +75,10 @@ class CKFinderController implements ContainerAwareInterface
                 return $this->render('@CKSourceCKFinder/examples/popup.html.twig');
             case 'modal':
                 return $this->render('@CKSourceCKFinder/examples/modal.html.twig');
-            case 'ckeditor':
-                return $this->render('@CKSourceCKFinder/examples/ckeditor.html.twig');
+            case 'ckeditor4':
+                return $this->render('@CKSourceCKFinder/examples/ckeditor4.html.twig');
+            case 'ckeditor5':
+                return $this->render('@CKSourceCKFinder/examples/ckeditor5.html.twig');
             case 'filechooser':
                 $formBuilder = $this->container->get('form.factory')->createBuilder(FormType::class);
                 $form = $formBuilder

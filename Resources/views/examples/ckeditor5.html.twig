@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKFinder 3</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
+    {% include "@CKSourceCKFinder/setup.html.twig" %}
+</head>
+<body>
+<div id="editor1"></div>
+<script>
+	if ( typeof ClassicEditor !== 'undefined' ) {
+		ClassicEditor
+			.create( document.querySelector( '#editor1' ), {
+				ckfinder: {
+					// To avoid issues, set it to an absolute path that does not start with dots, e.g. '/ckfinder/core/php/(...)'
+					uploadUrl: '{{ path('ckfinder_connector') }}?command=QuickUpload&type=Files&responseType=json'
+				},
+				toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
+
+			} )
+			.then( function( editor ) {
+				// console.log( editor );
+			} )
+			.catch( function( error ) {
+				console.error( error );
+			} );
+	} else {
+		document.getElementById( 'editor1' ).innerHTML =
+			'<div class="tip-a tip-a-alert">This sample requires working Internet connection to load CKEditor 5 from CDN.</div>'
+	}
+</script>
+</body>
+</html>
