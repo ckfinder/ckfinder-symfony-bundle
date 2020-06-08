@@ -46,7 +46,7 @@ class ConnectorFactory
             return $this->connectorInstance;
         }
 
-        $connector = new CKFinder($this->connectorConfig);
+        $connector = new $this->connectorConfig['connectorClass']($this->connectorConfig);
 
         $connector['authentication'] = $this->authenticationService;
 
