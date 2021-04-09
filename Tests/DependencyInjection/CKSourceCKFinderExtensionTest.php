@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace CKSource\Bundle\CKFinderBundle\Test\DependencyInjection\CKSourceCKFinderExtensionTest;
+namespace CKSource\Bundle\CKFinderBundle\Tests\DependencyInjection;
 
 use CKSource\Bundle\CKFinderBundle\DependencyInjection\CKSourceCKFinderExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

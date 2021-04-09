@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace CKSource\Bundle\CKFinderBundle\Test\Config\Definition;
+namespace CKSource\Bundle\CKFinderBundle\Tests\Config\Definition;
 
 use CKSource\Bundle\CKFinderBundle\Config\Definition\VariableArrayNode;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

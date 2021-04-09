@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace CKSource\Bundle\CKFinderBundle\Test\Form\Type;
+namespace CKSource\Bundle\CKFinderBundle\Tests\Form\Type;
 
 use CKSource\Bundle\CKFinderBundle\Form\Type\CKFinderFileChooserType;
 use Symfony\Component\Form\PreloadedExtension;
