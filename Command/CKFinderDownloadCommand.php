@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class CKFinderDownloadCommand extends Command
 {
-    const LATEST_VERSION = '3.5.1.2';
+    const LATEST_VERSION = '3.5.2';
     const FALLBACK_VERSION = '3.5.1';
 
     /**
@@ -102,7 +102,7 @@ class CKFinderDownloadCommand extends Command
             }
         ));
 
-        $output->writeln('<info>Downlading the CKFinder 3 distribution package.</info>');
+        $output->writeln('<info>Downloading the CKFinder 3 distribution package.</info>');
 
         $zipContents = @file_get_contents($this->buildPackageUrl(), false, $ctx);
 
