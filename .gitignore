@@ -1,5 +1,6 @@
 /composer.lock
 /vendor
+/.phpunit.result.cache
 
 /_connector
 /Resources/public
