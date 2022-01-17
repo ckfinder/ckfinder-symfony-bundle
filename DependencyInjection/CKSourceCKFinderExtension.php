@@ -64,7 +64,7 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
     /**
      * @return string
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'ckfinder';
     }

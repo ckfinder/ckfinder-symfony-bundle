@@ -53,7 +53,7 @@ class CKFinderDownloadCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $targetPublicPath = realpath(__DIR__ . '/../Resources/public');
 
