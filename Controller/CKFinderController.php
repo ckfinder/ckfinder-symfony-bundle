@@ -2,7 +2,7 @@
 /*
  * This file is a part of the CKFinder bundle for Symfony.
  *
- * Copyright (C) 2016, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2022, CKSource Holding sp. z o.o. All rights reserved.
  *
  * Licensed under the terms of the MIT license.
  * For the full copyright and license information, please view the LICENSE.txt
@@ -12,11 +12,9 @@
 namespace CKSource\Bundle\CKFinderBundle\Controller;
 
 use CKSource\Bundle\CKFinderBundle\Form\Type\CKFinderFileChooserType;
+use CKSource\CKFinder\CKFinder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,47 +22,23 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Controller for handling requests to CKFinder connector.
  */
-class CKFinderController implements ContainerAwareInterface
+class CKFinderController extends AbstractController
 {
     /**
-     * @var ContainerInterface
-     */
-    protected $container;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * Action that handles all CKFinder requests.
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function requestAction(Request $request)
+    public function requestAction(Request $request): Response
     {
-        /* @var \CKSource\CKFinder\CKFinder $ckfinder */
-        $ckfinder = $this->container->get('ckfinder.connector');
-
-        return $ckfinder->handle($request);
+        return $this->container->get('ckfinder.connector')->handle($request);
     }
 
     /**
      * Action for CKFinder usage examples.
      *
-     * To browse examples, please uncomment ckfinder_examplesroute in
-     * Resources/config/routing.yml and navigate to the /ckfinder/examples path.
-     *
-     * @param string|null $example
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * To browse examples, please uncomment ckfinder_examples route in
+     * Resources/config/routing.yaml and navigate to the /ckfinder/examples path.
      */
-    public function examplesAction($example = null)
+    public function examplesAction(?string $example = null): Response
     {
         switch ($example) {
             case 'fullpage':
@@ -80,47 +54,37 @@ class CKFinderController implements ContainerAwareInterface
             case 'ckeditor5':
                 return $this->render('@CKSourceCKFinder/examples/ckeditor5.html.twig');
             case 'filechooser':
-                $formBuilder = $this->container->get('form.factory')->createBuilder(FormType::class);
+                $formBuilder = $this->container->get('form.factory')->createBuilder();
                 $form = $formBuilder
                     ->add('foo', TextType::class)
                     ->add('bar', DateType::class)
-                    ->add('ckf1', CKFinderFileChooserType::class, array(
+                    ->add('ckf1', CKFinderFileChooserType::class, [
                         'label' => 'File Chooser 1',
                         'button_text' => 'Browse files (popup)',
-                        'button_attr' => array(
+                        'button_attr' => [
                             'class' => 'my-class'
-                        )
-                    ))
-                    ->add('ckf2', CKFinderFileChooserType::class, array(
+                        ]
+                    ])
+                    ->add('ckf2', CKFinderFileChooserType::class, [
                         'label' => 'File Chooser 2',
                         'mode' => 'modal',
                         'button_text' => 'Browse files (modal)',
-                    ))
+                    ])
                     ->getForm();
 
-                return $this->render('@CKSourceCKFinder/examples/filechooser.html.twig', array(
+                return $this->render('@CKSourceCKFinder/examples/filechooser.html.twig', [
                     'form' => $form->createView()
-                ));
+                ]);
         }
 
         return $this->render('@CKSourceCKFinder/examples/index.html.twig');
     }
 
-    /**
-     * @param $viewName
-     * @param array $parameters
-     * @return Response
-     */
-    protected function render($viewName, $parameters = [])
+    public static function getSubscribedServices(): array
     {
-        if (!$this->container->has('twig')) {
-            throw new \LogicException('Twig Bundle is not available. Try running "composer require symfony/twig-bundle".');
-        }
-
-        $twig = $this->container->get('twig');
-
-        $content = $twig->render($viewName, $parameters);
-
-        return new Response($content);
+        return [
+            'ckfinder.connector' => 'CKSource\CKFinder\CKFinder',
+            ...parent::getSubscribedServices()
+        ];
     }
 }

@@ -2,7 +2,7 @@
 /*
  * This file is a part of the CKFinder bundle for Symfony.
  *
- * Copyright (C) 2016, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2022, CKSource Holding sp. z o.o. All rights reserved.
  *
  * Licensed under the terms of the MIT license.
  * For the full copyright and license information, please view the LICENSE.txt
@@ -64,7 +64,7 @@ class VariableArrayNode extends VariableNode
     /**
      * {@inheritdoc}
      */
-    protected function finalizeValue($value)
+    protected function finalizeValue($value): mixed
     {
         foreach ($this->requiredKeys as $requiredKey) {
             if (!array_key_exists($requiredKey, $value)) {
@@ -82,7 +82,7 @@ class VariableArrayNode extends VariableNode
     /**
      * {@inheritdoc}
      */
-    protected function mergeValues($leftSide, $rightSide)
+    protected function mergeValues($leftSide, $rightSide): mixed
     {
         return array_replace_recursive($leftSide, $rightSide);
     }

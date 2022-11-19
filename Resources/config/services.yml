@@ -15,7 +15,13 @@ services:
         factory: ['@ckfinder.connector.factory', 'getConnector']
         public: true
 
-    ckfinder.command.download:
-        class: CKSource\Bundle\CKFinderBundle\Command\CKFinderDownloadCommand
+    CKSource\Bundle\CKFinderBundle\Command\CKFinderDownloadCommand:
         tags:
             - { name: console.command }
+
+    CKSource\Bundle\CKFinderBundle\Controller\CKFinderController:
+        public: true
+        calls: [['setContainer', ['@Psr\Container\ContainerInterface']]]
+        tags:
+            - { name: 'container.service_subscriber' }
+            - { name: 'container.service_subscriber', key: 'ckfinder.connector', id: 'ckfinder.connector' }

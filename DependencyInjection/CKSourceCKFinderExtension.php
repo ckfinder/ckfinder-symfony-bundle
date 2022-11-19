@@ -2,7 +2,7 @@
 /*
  * This file is a part of the CKFinder bundle for Symfony.
  *
- * Copyright (C) 2016, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2022, CKSource Holding sp. z o.o. All rights reserved.
  *
  * Licensed under the terms of the MIT license.
  * For the full copyright and license information, please view the LICENSE.txt
@@ -64,7 +64,7 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
     /**
      * @return string
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'ckfinder';
     }

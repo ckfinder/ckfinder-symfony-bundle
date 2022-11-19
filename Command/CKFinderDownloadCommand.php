@@ -2,7 +2,7 @@
 /*
  * This file is a part of the CKFinder bundle for Symfony.
  *
- * Copyright (C) 2016, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2022, CKSource Holding sp. z o.o. All rights reserved.
  *
  * Licensed under the terms of the MIT license.
  * For the full copyright and license information, please view the LICENSE.txt
@@ -26,8 +26,7 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class CKFinderDownloadCommand extends Command
 {
-    const LATEST_VERSION = '3.5.3';
-    const FALLBACK_VERSION = '3.5.1';
+    const LATEST_VERSION = '3.6.0';
 
     /**
      * {@inheritdoc}
@@ -45,7 +44,7 @@ class CKFinderDownloadCommand extends Command
      */
     protected function buildPackageUrl()
     {
-        $packageVersion = Kernel::MAJOR_VERSION >= 5 ? self::LATEST_VERSION : self::FALLBACK_VERSION;
+        $packageVersion = self::LATEST_VERSION;
 
         return "http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/$packageVersion/ckfinder_php_$packageVersion.zip";
     }

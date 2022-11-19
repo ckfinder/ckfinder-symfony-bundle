@@ -1,8 +1,8 @@
 CKFinder 3 Bundle for Symfony
 ===============================
 
-This repository contains the CKFinder 3 bundle for Symfony 3+.
-If you're looking for bundle for Symfony 2, please refer [here](https://github.com/ckfinder/ckfinder-symfony2-bundle).
+This repository contains the CKFinder 3 bundle for Symfony 6+.
+If you're looking for bundle for older version of Symfony, please use [version 3](https://github.com/ckfinder/ckfinder-symfony-bundle/tree/v3.x.x).
 
 ## Installation
 
@@ -46,25 +46,11 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 	```
 
 4. Enable bundle routing.
-
-    **Symfony 3**
-    
-    Enable bundle routes in `app/config/routing.yml`:
-
-	```yaml
-	# app/config/routing.yml
 	
-	ckfinder_connector:
-	    resource: "@CKSourceCKFinderBundle/Resources/config/routing.yml"
-	    prefix:   /
-	```
-	
-	**Symfony 4+**
-	
-	Create `config/routes/ckfinder.yml` with following contents:
+	Create `config/routes/ckfinder.yaml` with following contents:
 	
     ```yaml
-    # config/routes/ckfinder.yml
+    # config/routes/ckfinder.yaml
     
     ckfinder_connector:
         resource: "@CKSourceCKFinderBundle/Resources/config/routing.yml"
@@ -73,14 +59,6 @@ If you're looking for bundle for Symfony 2, please refer [here](https://github.c
 	
 
 5. Create a directory for CKFinder files and allow for write access to it. By default CKFinder expects it to be placed in `<public folder>/userfiles` (this can be altered in configuration).
-
-    **Symfony 3**
-    
-	```bash
-	mkdir -m 777 web/userfiles
-	```
-	
-	**Symfony 4+**
 	
 	```bash
     mkdir -m 777 public/userfiles
@@ -104,26 +82,6 @@ and point the CKFinder connector to use it.
 
 A basic implementation that returns `true` from the `authenticate` method (which is obviously **not secure**) can look like below:
 
-**Symfony 3**
-
-```php
-// src/AppBundle/CustomCKFinderAuth/CustomCKFinderAuth.php
-
-namespace AppBundle\CustomCKFinderAuth;
-
-use CKSource\Bundle\CKFinderBundle\Authentication\Authentication as AuthenticationBase;
-
-class CustomCKFinderAuth extends AuthenticationBase
-{
-    public function authenticate()
-    {
-        return true;
-    }
-}
-```
-
-**Symfony 4**
-
 ```php
 // src/CustomCKFinderAuth/CustomCKFinderAuth.php
 
@@ -145,24 +103,10 @@ container from the authentication class scope.
 
 When your custom authentication is ready, you need to tell the CKFinder connector to start using it. To do that add the following option to your configuration:
 
-**Symfony 3**
-
-In `app/config/config.yml` file add following configuration:
+Create `config/packages/ckfinder.yaml` file:
 
 ```yaml
-# app/config/config.yml
-
-ckfinder:
-    connector:
-        authenticationClass: AppBundle\CustomCKFinderAuth\CustomCKFinderAuth
-```
-
-**Symfony 4**
-
-Create `config/packages/ckfinder.yml` file:
-
-```yaml
-# config/packages/ckfinder.yml
+# config/packages/ckfinder.yaml
 
 ckfinder:
     connector:
@@ -178,20 +122,8 @@ is provided in form of a regular PHP file, but you can use the format you prefer
 The simplest way to overwrite the default configuration is copying the `ckfinder_config.php` file to your application config
 directory, and then importing it in the main configuration file:
 
-**Symfony 3**
-
 ```yaml
-# app/config/config.yml
-
-imports:
-    ...
-    - { resource: ckfinder_config.php }
-```
-
-**Symfony 4**
-
-```yaml
-# config/packages/ckfinder.yml
+# config/packages/ckfinder.yaml
 
 imports:
     - { resource: ckfinder_config.php }
@@ -203,28 +135,8 @@ From now all connector configuration options will be taken from copied `ckfinder
 
 Another way to configure CKFinder is to include required options under the `ckfinder` node, directly in your config file.
 
-**Symfony 3**
-
 ```yaml
-# app/config/config.yml
-
-ckfinder:
-    connector:
-        licenseName: LICENSE-NAME
-        licenseKey: LICENSE-KEY
-        authenticationClass: AppBundle\CustomCKFinderAuth\CustomCKFinderAuth
-
-        resourceTypes:
-            MyResource:
-                name: MyResource
-                backend: default
-                directory: myResource
-```
-
-**Symfony 4**
-
-```yaml
-# config/packages/ckfinder.yml
+# config/packages/ckfinder.yaml
 
 ckfinder:
     connector:
