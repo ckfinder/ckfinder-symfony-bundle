@@ -14,27 +14,33 @@ namespace CKSource\Bundle\CKFinderBundle\Tests\Form\Type;
 use CKSource\Bundle\CKFinderBundle\Form\Type\CKFinderFileChooserType;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\Form\Form;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * CKFinderFileChooserType test.
  */
 class CKFinderFileChooserTypeTest extends TypeTestCase
 {
-    protected function getExtensions()
+    protected function getExtensions(): array
     {
         $fieldType = new CKFinderFileChooserType();
 
-        return array(new PreloadedExtension(array(
-            $fieldType,
-        ), array()));
+        return
+            [
+                new PreloadedExtension(
+                    [$fieldType],
+                    []
+                )
+            ];
     }
 
-    public function testFileChooserInstantiation()
+    public function testFileChooserInstantiation(): void
     {
-        $this->factory->create(CKFinderFileChooserType::class);
+        $this->assertInstanceOf(Form::class, $this->factory->create(CKFinderFileChooserType::class));
     }
 
-    public function testDefaultOptions()
+    public function testDefaultOptions(): void
     {
         $form = $this->factory->create(CKFinderFileChooserType::class);
         $view = $form->createView();
@@ -45,47 +51,57 @@ class CKFinderFileChooserTypeTest extends TypeTestCase
         $this->assertSame('ckf_filechooser_' . $view->vars['id'], $view->vars['button_id']);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
-    public function testModeOptionExpectsModalOrPopup()
+    public function testModeOptionExpectsModalOrPopup(): void
     {
-        $this->factory->create(CKFinderFileChooserType::class, null, array(
-            'mode' => 'foo'
-        ));
+        $this->expectException(InvalidOptionsException::class);
+        $this->factory->create(
+            CKFinderFileChooserType::class,
+            null,
+            [
+                'mode' => 'foo'
+            ]
+        );
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
-    public function testButtonTextOptionExpectsString()
+    public function testButtonTextOptionExpectsString(): void
     {
-        $this->factory->create(CKFinderFileChooserType::class, null, array(
-            'button_text' => array()
-        ));
+        $this->expectException(InvalidOptionsException::class);
+        $this->factory->create(
+            CKFinderFileChooserType::class,
+            null,
+            [
+                'button_text' => []
+            ]
+        );
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
-    public function testButtonAttrOptionExpectsArray()
+    public function testButtonAttrOptionExpectsArray(): void
     {
-        $this->factory->create(CKFinderFileChooserType::class, null, array(
-            'button_attr' => 'foo'
-        ));
+        $this->expectException(InvalidOptionsException::class);
+        $this->factory->create(
+            CKFinderFileChooserType::class,
+            null,
+            [
+                'button_attr' => 'foo'
+            ]
+        );
     }
 
-    public function testViewValues()
+    public function testViewValues(): void
     {
-        $form = $this->factory->create(CKFinderFileChooserType::class, null, array(
-            'mode' => 'modal',
-            'button_text' => 'foo',
-            'button_attr' => array('class' => 'bar')
-        ));
+        $form = $this->factory->create(
+            CKFinderFileChooserType::class,
+            null,
+            [
+                'mode' => 'modal',
+                'button_text' => 'foo',
+                'button_attr' => ['class' => 'bar']
+            ]
+        );
         $view = $form->createView();
 
         $this->assertSame('modal', $view->vars['mode']);
         $this->assertSame('foo', $view->vars['button_text']);
-        $this->assertSame(array('class' => 'bar'), $view->vars['button_attr']);
+        $this->assertSame(['class' => 'bar'], $view->vars['button_attr']);
     }
 }

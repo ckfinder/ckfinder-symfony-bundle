@@ -8,46 +8,29 @@ If you're looking for bundle for older version of Symfony, please use [version 3
 
 1. Add Composer dependency and install the bundle.
 
-	```bash
-	composer require ckfinder/ckfinder-symfony-bundle
-	```
+    ```bash
+    composer require ckfinder/ckfinder-symfony-bundle
+    ```
 
-2. Enable the bundle in `AppKernel.php`.
+2. Run the command to download the CKFinder distribution package.
 
-    **Note:** This step is required only for Symfony 3. If you use Symfony 4+
-    the bundle will be registered automatically.
-
-	``` php
-	// app/AppKernel.php
+    After installing the bundle you need to download CKFinder distribution package. It is not shipped
+    with the bundle due to different license terms. To install it, run the following Symfony command:
 	
-	public function registerBundles()
-	{
-		$bundles = [
-			// ...
-			new CKSource\Bundle\CKFinderBundle\CKSourceCKFinderBundle(),
-		];
-	}
-	```	
+    ```bash
+    php bin/console ckfinder:download
+    ```
+	
+    It will download the code and place it in the `Resource/public` directory of the bundle. After that you may also want to install
+    assets, so the public directory will be updated with CKFinder code.
+	
+    ```bash
+    php bin/console assets:install
+    ```
 
-3. Run the command to download the CKFinder distribution package.
-
-	After installing the bundle you need to download CKFinder distribution package. It is not shipped
-	with the bundle due to different license terms. To install it, run the following Symfony command:
+3. Enable bundle routing.
 	
-	```bash
-	php bin/console ckfinder:download
-	```
-	
-	It will download the code and place it in the `Resource/public` directory of the bundle. After that you may also want to install
-	assets, so the public directory will be updated with CKFinder code.
-	
-	```bash
-	php bin/console assets:install
-	```
-
-4. Enable bundle routing.
-	
-	Create `config/routes/ckfinder.yaml` with following contents:
+    Create `config/routes/ckfinder.yaml` with following contents:
 	
     ```yaml
     # config/routes/ckfinder.yaml
@@ -58,14 +41,14 @@ If you're looking for bundle for older version of Symfony, please use [version 3
     ```
 	
 
-5. Create a directory for CKFinder files and allow for write access to it. By default CKFinder expects it to be placed in `<public folder>/userfiles` (this can be altered in configuration).
-	
-	```bash
-    mkdir -m 777 public/userfiles
-    ```
-	
+4. Create a directory for CKFinder files and allow for write access to it. By default CKFinder expects it to be placed in `<public folder>/userfiles` (this can be altered in configuration).
 
-**NOTE:** Since usually setting permissions to 0777 is insecure, it is advisable to change the group ownership of the directory to the same user as Apache and add group write permissions instead. Please contact your system administrator in case of any doubts.
+	```bash
+	mkdir -m 777 public/userfiles
+	```
+
+	**NOTE:** Since usually setting permissions to 0777 is insecure, it is advisable to change the group ownership of the directory to the same user as Apache and add group write permissions instead. Please contact your system administrator in case of any doubts.
+
 
 At this point you should see the connector JSON response after navigating to the `/ckfinder/connector?command=Init` route.
 Authentication for CKFinder is not configured yet, so you will see an error response saying that CKFinder is not enabled.
@@ -91,7 +74,7 @@ use CKSource\Bundle\CKFinderBundle\Authentication\Authentication as Authenticati
 
 class CustomCKFinderAuth extends AuthenticationBase
 {
-    public function authenticate()
+    public function authenticate(): bool
     {
         return true;
     }

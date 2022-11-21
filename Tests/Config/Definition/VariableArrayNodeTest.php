@@ -13,25 +13,29 @@ namespace CKSource\Bundle\CKFinderBundle\Tests\Config\Definition;
 
 use CKSource\Bundle\CKFinderBundle\Config\Definition\VariableArrayNode;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
 
 /**
  * ExtraValuesArrayNode test.
  */
-class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
+class VariableArrayNodeTest extends TestCase
 {
     /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidTypeException
+     * Test node if value is not an array
      */
-    public function testNormalizeThrowsExceptionIfValueIsNotArray()
+    public function testNormalizeThrowsExceptionIfValueIsNotArray(): void
     {
         $node = new VariableArrayNode('root');
+        $this->expectException(InvalidTypeException::class);
         $node->normalize('foo');
     }
 
     /**
      * Test merging
      */
-    public function testMerge()
+    public function testMerge(): void
     {
         if (method_exists(TreeBuilder::class, 'getRootNode')) {
             $builder = new TreeBuilder('root');
@@ -51,32 +55,32 @@ class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
             ->end()
             ->buildTree();
 
-        $a = array(
+        $a = [
             'foo' => 'bar',
-            'extra' => array(
+            'extra' => [
                 'foo' => 'a',
                 'bar' => 'b'
-            )
-        );
+            ]
+        ];
 
-        $b = array(
+        $b = [
             'foo' => 'moo',
             'bar' => 'b',
-            'extra' => array(
+            'extra' => [
                 'foo' => 'c',
                 'baz' => 'd'
-            ),
-        );
+            ],
+        ];
 
-        $expected = array(
+        $expected = [
             'foo' => 'moo',
             'bar' => 'b',
-            'extra' => array(
+            'extra' => [
                 'foo' => 'c',
                 'bar' => 'b',
                 'baz' => 'd'
-            )
-        );
+            ]
+        ];
 
         $this->assertEquals($expected, $tree->merge($a, $b));
     }
@@ -84,7 +88,7 @@ class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
     /**
      * Test merging when used as a prototype
      */
-    public function testMergeWhenUsedAsAPrototype()
+    public function testMergeWhenUsedAsAPrototype(): void
     {
         if (method_exists(TreeBuilder::class, 'getRootNode')) {
             $builder = new TreeBuilder('root');
@@ -108,57 +112,57 @@ class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
             ->end()
             ->buildTree();
 
-        $a = array(
+        $a = [
             'foo' => 'bar',
-            'backends' => array(
-                'cache' => array(
+            'backends' => [
+                'cache' => [
                     'name' => 'cache',
                     'adapter' => 'local',
                     'root' => '/foo'
-                ),
-                'default' => array(
+                ],
+                'default' => [
                     'name' => 'default',
                     'adapter' => 'local',
                     'root' => '/bar'
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
-        $b = array(
+        $b = [
             'foo' => 'moo',
-            'backends' => array(
-                'cache' => array(
+            'backends' => [
+                'cache' => [
                     'adapter' => 's3'
-                ),
-                'default' => array(
+                ],
+                'default' => [
                     'root' => '/bar/baz'
-                ),
-                'another' => array(
+                ],
+                'another' => [
                     'name' => 'another',
                     'adapter' => 's3'
-                )
-            ),
-        );
+                ]
+            ],
+        ];
 
-        $expected = array(
+        $expected = [
             'foo' => 'moo',
-            'backends' => array(
-                'cache' => array(
+            'backends' => [
+                'cache' => [
                     'name' => 'cache',
                     'adapter' => 's3',
                     'root' => '/foo'
-                ),
-                'default' => array(
+                ],
+                'default' => [
                     'name' => 'default',
                     'adapter' => 'local',
                     'root' => '/bar/baz'
-                ),
-                'another' => array(
+                ],
+                'another' => [
                     'name' => 'another',
                     'adapter' => 's3'
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->assertEquals($expected, $tree->merge($a, $b));
     }
@@ -166,21 +170,20 @@ class VariableArrayNodeTest extends \PHPUnit_Framework_TestCase
     /**
      * Test node finalization
      */
-    public function testFinalizeValue()
+    public function testFinalizeValue(): void
     {
         $node = new VariableArrayNode('foo', null);
-        $this->assertSame(array('a' => 'b'), $node->finalize(array('a' => 'b')));
+        $this->assertSame(['a' => 'b'], $node->finalize(['a' => 'b']));
     }
 
     /**
      * Test node finalization without required keys present
-     *
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     * @expectedExceptionMessage The key "bar" at path "foo" must be configured.
      */
-    public function testFinalizeValueWithoutRequiredKeys()
+    public function testFinalizeValueWithoutRequiredKeys(): void
     {
-        $node = new VariableArrayNode('foo', null, array('bar'));
-        $node->finalize(array('a' => 'b'));
+        $node = new VariableArrayNode('foo', null, ['bar']);
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('The key "bar" at path "foo" must be configured.');
+        $node->finalize(['a' => 'b']);
     }
 }

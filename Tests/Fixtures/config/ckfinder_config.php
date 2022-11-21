@@ -29,18 +29,18 @@ $config['images'] = array(
 $config['backends']['symfony_cache'] = array(
     'name'         => 'symfony_cache',
     'adapter'      => 'local',
-    'root'         => '/app/cache'
+    'root'         => '/var/cache'
 );
 $config['backends']['symfony_logs'] = array(
     'name'         => 'symfony_logs',
     'adapter'      => 'local',
-    'root'         => '/app/logs'
+    'root'         => '/var/logs'
 );
 $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     'baseUrl'      => '/userfiles/',
-    'root'         => '/app/../public/userfiles',
+    'root'         => '/public/userfiles',
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8'
