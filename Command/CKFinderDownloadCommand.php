@@ -46,7 +46,7 @@ class CKFinderDownloadCommand extends Command
     {
         $packageVersion = self::LATEST_VERSION;
 
-        return "http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/$packageVersion/ckfinder_php_$packageVersion.zip";
+        return "https://download.cksource.com/CKFinder/CKFinder%20for%20PHP/$packageVersion/ckfinder_php_$packageVersion.zip";
     }
 
     /**
