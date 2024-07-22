@@ -26,12 +26,12 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class CKFinderDownloadCommand extends Command
 {
-    const LATEST_VERSION = '3.6.1';
+    const LATEST_VERSION = '3.7.0';
 
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('ckfinder:download')
              ->setDescription('Downloads the CKFinder distribution package and extracts it to CKSourceCKFinderBundle.');
@@ -42,7 +42,7 @@ class CKFinderDownloadCommand extends Command
      *
      * @return string
      */
-    protected function buildPackageUrl()
+    protected function buildPackageUrl(): string
     {
         $packageVersion = self::LATEST_VERSION;
 
@@ -52,7 +52,7 @@ class CKFinderDownloadCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $targetPublicPath = realpath(__DIR__ . '/../Resources/public');
 

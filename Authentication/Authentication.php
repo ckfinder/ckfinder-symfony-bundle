@@ -21,7 +21,7 @@ class Authentication implements AuthenticationInterface
     /**
      * @var ContainerInterface
      */
-    protected $container;
+    protected ContainerInterface $container;
 
     /**
      * {@inheritdoc}
@@ -36,7 +36,7 @@ class Authentication implements AuthenticationInterface
      *
      * @param ContainerInterface|null $container A ContainerInterface instance or null
      */
-    public function setContainer(ContainerInterface $container = null)
+    public function setContainer(ContainerInterface $container = null): void
     {
         $this->container = $container;
     }

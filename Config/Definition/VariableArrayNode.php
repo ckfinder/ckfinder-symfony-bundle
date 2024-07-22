@@ -28,7 +28,7 @@ class VariableArrayNode extends VariableNode
      *
      * @var array
      */
-    protected $requiredKeys = array();
+    protected array $requiredKeys = array();
 
     /**
      * @param string             $name
@@ -44,7 +44,7 @@ class VariableArrayNode extends VariableNode
     /**
      * {@inheritdoc}
      */
-    protected function validateType($value)
+    protected function validateType($value): void
     {
         if (!is_array($value)) {
             $ex = new InvalidTypeException(sprintf(
