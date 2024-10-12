@@ -26,7 +26,7 @@ class Authentication implements AuthenticationInterface
     /**
      * {@inheritdoc}
      */
-    public function authenticate(): bool
+    public function authenticate()
     {
         return false;
     }

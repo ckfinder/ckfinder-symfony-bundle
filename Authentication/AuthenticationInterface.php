@@ -19,5 +19,5 @@ interface AuthenticationInterface
     /**
      * @return bool `true` if the current user was successfully authenticated within CKFinder.
      */
-    public function authenticate(): bool;
+    public function authenticate();
 }
