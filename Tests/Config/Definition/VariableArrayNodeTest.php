@@ -37,13 +37,8 @@ class VariableArrayNodeTest extends TestCase
      */
     public function testMerge(): void
     {
-        if (method_exists(TreeBuilder::class, 'getRootNode')) {
-            $builder = new TreeBuilder('root');
-            $rootNode = $builder->getRootNode();
-        } else {
-            $builder = new TreeBuilder();
-            $rootNode = $builder->root('root');
-        }
+        $builder = new TreeBuilder('root');
+        $rootNode = $builder->getRootNode();
 
         $tree = $rootNode
                 ->children()

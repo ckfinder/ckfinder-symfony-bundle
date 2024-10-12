@@ -3,3 +3,5 @@
 
 /_connector
 /Resources/public
+.phpunit.result.cache
+.idea
