@@ -4,12 +4,12 @@
 /*
  * CKFinder Configuration File
  *
- * For the official documentation visit http://docs.cksource.com/ckfinder3-php/
+ * For the official documentation visit https://docs.cksource.com/ckfinder3-php/
  */
 
 
 /*============================ PHP Error Reporting ====================================*/
-// http://docs.cksource.com/ckfinder3-php/debugging.html
+// https://docs.cksource.com/ckfinder3-php/debugging.html
 
 // Production
 //error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
@@ -20,18 +20,18 @@
 // ini_set('display_errors', 1);
 
 /*============================ General Settings =======================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html
+// https://docs.cksource.com/ckfinder3-php/configuration.html
 
 $config = array();
 
 /*============================ License Key ============================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
 $config['licenseName'] = '';
 $config['licenseKey']  = '';
 
 /*============================ CKFinder Internal Directory ============================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir
 
 $config['privateDir'] = array(
     'backend' => 'symfony_cache',
@@ -45,7 +45,7 @@ $config['privateDir'] = array(
 );
 
 /*============================ Images and Thumbnails ==================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_images
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_images
 
 $config['images'] = array(
     'maxWidth'  => 1600,
@@ -59,7 +59,7 @@ $config['images'] = array(
 );
 
 /*=================================== Backends ========================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_backends
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_backends
 
 $config['backends']['symfony_cache'] = array(
     'name'         => 'symfony_cache',
@@ -84,7 +84,7 @@ $config['backends']['default'] = array(
 );
 
 /*================================ Resource Types =====================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_resourceTypes
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_resourceTypes
 
 $config['defaultResourceTypes'] = '';
 
@@ -107,11 +107,11 @@ $config['resourceTypes'][] = array(
 );
 
 /*================================ Access Control =====================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_roleSessionVar
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_roleSessionVar
 
 $config['roleSessionVar'] = 'CKFinder_UserRole';
 
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_accessControl
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_accessControl
 $config['accessControl'][] = array(
     'role'                => '*',
     'resourceType'        => '*',
@@ -133,7 +133,7 @@ $config['accessControl'][] = array(
 
 
 /*================================ Other Settings =====================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html
+// https://docs.cksource.com/ckfinder3-php/configuration.html
 
 $config['overwriteOnUpload'] = false;
 $config['checkDoubleExtension'] = true;
@@ -146,16 +146,16 @@ $config['hideFiles'] = array('.*');
 $config['forceAscii'] = false;
 $config['xSendfile'] = false;
 
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_debug
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_debug
 $config['debug'] = false;
 
 /*==================================== Plugins ========================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_plugins
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_plugins
 
 $config['plugins'] = array();
 
 /*================================ Cache settings =====================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_cache
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_cache
 
 $config['cache'] = array(
     'imagePreview' => 24 * 3600,
@@ -163,17 +163,17 @@ $config['cache'] = array(
 );
 
 /*============================ Temp Directory settings ================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_tempDirectory
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_tempDirectory
 
 $config['tempDirectory'] = sys_get_temp_dir();
 
 /*============================ Session Cause Performance Issues =======================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_sessionWriteClose
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_sessionWriteClose
 
 $config['sessionWriteClose'] = true;
 
 /*================================= CSRF protection ===================================*/
-// http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_csrfProtection
+// https://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_csrfProtection
 
 $config['csrfProtection'] = true;
 

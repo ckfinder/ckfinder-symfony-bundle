@@ -6,7 +6,7 @@
     "authors": [
         {
             "name": "CKSource",
-            "homepage": "http://cksource.com"
+            "homepage": "https://cksource.com"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
         "symfony/mime": "^7.0",
         "symfony/yaml": "^7.0",
         "pimple/pimple": "~3.0",
-        "monolog/monolog": "^3.0",
+        "monolog/monolog": "^2.0|^3.0",
         "league/flysystem": "^3.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "league/flysystem-azure-blob-storage": "^3.0",
