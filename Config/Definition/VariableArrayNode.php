@@ -28,14 +28,14 @@ class VariableArrayNode extends VariableNode
      *
      * @var array
      */
-    protected array $requiredKeys = array();
+    protected array $requiredKeys = [];
 
     /**
      * @param string             $name
      * @param NodeInterface|null $parent
      * @param array              $requiredKeys
      */
-    public function __construct($name, NodeInterface $parent = null, array $requiredKeys = array())
+    public function __construct($name, ?NodeInterface $parent = null, array $requiredKeys = [])
     {
         parent::__construct($name, $parent);
         $this->requiredKeys = $requiredKeys;
@@ -44,7 +44,7 @@ class VariableArrayNode extends VariableNode
     /**
      * {@inheritdoc}
      */
-    protected function validateType($value): void
+    protected function validateType(mixed $value): void
     {
         if (!is_array($value)) {
             $ex = new InvalidTypeException(sprintf(

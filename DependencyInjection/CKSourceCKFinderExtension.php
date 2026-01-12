@@ -27,7 +27,7 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
     /**
      * {@inheritdoc}
      */
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $fileLocator =  new FileLocator(__DIR__.'/../Resources/config');
 
@@ -44,7 +44,7 @@ class CKSourceCKFinderExtension extends Extension implements PrependExtensionInt
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $fileLocator = new FileLocator(__DIR__.'/../Resources/config');
 

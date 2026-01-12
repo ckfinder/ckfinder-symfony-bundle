@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class CKFinderDownloadCommand extends Command
 {
-    const LATEST_VERSION = '3.7.0';
+    const LATEST_VERSION = '3.7.1';
 
     /**
      * {@inheritdoc}

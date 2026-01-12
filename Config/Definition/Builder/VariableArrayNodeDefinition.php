@@ -41,7 +41,7 @@ class VariableArrayNodeDefinition extends VariableNodeDefinition
      *
      * @return $this
      */
-    public function requiresKeys(array $requiredKeys)
+    public function requiresKeys(array $requiredKeys): self
     {
         $this->requiredKeys = $requiredKeys;
 
