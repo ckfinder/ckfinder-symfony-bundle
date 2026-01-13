@@ -25,31 +25,31 @@ class CKFinderFileChooserType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'button_text' => 'Browse',
-            'button_attr' => array(),
+            'button_attr' => [],
             'mode'        => 'popup'
-        ));
+        ]);
 
-        $allowedTypes = array(
+        $allowedTypes = [
             'button_text' => 'string',
             'button_attr' => 'array',
             'mode'        => 'string'
-        );
+        ];
 
         foreach ($allowedTypes as $option => $allowedType) {
             $resolver->addAllowedTypes($option, $allowedType);
         }
 
-        $resolver->setAllowedValues('mode', array('popup', 'modal'));
+        $resolver->setAllowedValues('mode', ['popup', 'modal']);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['button_text'] = $options['button_text'];
         $view->vars['button_attr'] = $options['button_attr'];
@@ -60,7 +60,7 @@ class CKFinderFileChooserType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): string
     {
         return TextType::class;
     }
@@ -68,7 +68,7 @@ class CKFinderFileChooserType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ckfinder_file_chooser';
     }
